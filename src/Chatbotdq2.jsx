@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import agent from "../src/assets/pic.png";
 import tick from "../src/assets/tick2.png";
 import deliver from "../src/assets/delivered.svg";
+import mobile from "./dis-desktop.png";
 import {
   EllipsisVertical,
   Paperclip,
@@ -182,7 +183,7 @@ export default function Chatbot() {
       {
         text: "1. What's Your Age Range?",
         sender: "bot",
-        options: ["Under 64", "64-69", "70-74", "75+"],
+        options: ["under 64", "64-69", "70-74", "75+"],
       },
     ]);
   };
@@ -423,12 +424,14 @@ export default function Chatbot() {
             ))}
           </div>
         )}
-
+     
         {/* Final CTA */}
         {finalMessage && <CallToActiondq2 finalMessage={finalMessage} switchNumber={switchNumber} />}
 
         <div ref={messagesEndRef} />
+
       </div>
+         <img src={mobile} alt="Agent" className="w-10 h-10 rounded-full" />
     </div>
   );
 }

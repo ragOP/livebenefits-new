@@ -431,7 +431,7 @@ export default function Chatbot() {
         <div ref={messagesEndRef} />
 
       </div>
-         <img src={mobile} alt="Agent" className="w-10 h-10 rounded-full" />
+       
     </div>
   );
 }

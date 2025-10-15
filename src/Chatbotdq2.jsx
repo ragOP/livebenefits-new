@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import agent from "../src/assets/pic.png";
 import tick from "../src/assets/tick2.png";
 import deliver from "../src/assets/delivered.svg";
-import mobile from "./dis-desktop.png";
+
 import {
   EllipsisVertical,
   Paperclip,

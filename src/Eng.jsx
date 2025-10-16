@@ -1,7 +1,6 @@
 // index.jsx
 import React, { useEffect, useRef, useState } from "react";
-
-import Card from'./assets/card.jpg';
+import Card from "./assets/card.jpg";
 
 export default function Eng() {
   // ==== GLOBAL SAFETIES ====
@@ -24,6 +23,11 @@ export default function Eng() {
   const [seconds, setSeconds] = useState(52);
   const timerRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // ==== CALL NUMBER (dynamic based on selections) ====
+  // default number
+  const [telNumber, setTelNumber] = useState("+13236897861");
+  const [displayNumber, setDisplayNumber] = useState("(323) 689-7861");
 
   // Desktop vs mobile logo switch
   useEffect(() => {
@@ -317,7 +321,7 @@ export default function Eng() {
 
   // ====== Ringba queue-only (no external script) ======
   const RINGBA_AGE_KEY = "age";           // change to 'Age' if your Ringba expects capitalized
-  const RINGBA_MEDICARE_KEY = "ab"; // key for Medicare Part A/B selection
+  const RINGBA_MEDICARE_KEY = "ab";       // key for Medicare Part A/B selection
 
   // Helper to push a tag to Ringba queue with optional newsbreak_cid
   function pushRingbaTag(tagObj) {
@@ -333,10 +337,10 @@ export default function Eng() {
     }
   }
 
-  // Age tag
+  // Age tag (force lowercase values as requested)
   const rbAge = (value) => {
     if (locked || hideMain) return; // stop pushes during/after status/congrats
-    pushRingbaTag({ [RINGBA_AGE_KEY]: value });
+    pushRingbaTag({ [RINGBA_AGE_KEY]: String(value).toLowerCase() });
   };
 
   // Medicare A/B tag
@@ -430,30 +434,39 @@ export default function Eng() {
   // Step 1 (Age) buttons call this and push Ringba age tag
   const handleAgeSelect = (ageValue) => {
     if (locked || hideMain) return;
+
+    // force lowercase for Ringba; UI labels remain as-is
     rbAge(ageValue);
+
+    // DYNAMIC CALL NUMBER SWITCH:
+    // when "Under 64" is selected, switch to +18337480815
+    if (String(ageValue).toLowerCase() === "under 64") {
+      setTelNumber("+18337480815");
+      setDisplayNumber("(833) 748-0815");
+    } else {
+      // keep / reset to default for other ranges
+      setTelNumber("+13236897861");
+      setDisplayNumber("(323) 689-7861");
+    }
+
     updateToCitizenStep();
   };
 
   // Step 2: Citizen (yes/no)
   const handleCitizen = (answer) => {
     if (locked || hideMain) return;
-    // (Add a tag here if you ever need it)
     updateToMedicareStep();
   };
 
   // Step 3: Medicare (yes/no) → push Ringba 'ab' + proceed
   const handleMedicare = (answer) => {
     if (locked || hideMain) return;
-    // normalize to lowercase "yes"/"no"
     const norm = String(answer).toLowerCase() === "yes" ? "yes" : "no";
     rbMedicare(norm);
     stepProcess();
   };
 
   // ====== Render ======
-  const displayNumber = "(323) 689-7861"; // display-friendly
-  const telNumber = "+13236897861";       // tel: href
-
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: styles }} />
@@ -466,8 +479,6 @@ export default function Eng() {
       >
         <p style={{ fontSize: "1.3em", margin: 0 }}>Live Benefits</p>
       </div>
-
-   
 
       {/* Hero / Quiz — hidden when status OR congrats */}
       <div className={`div6 ${hideMain ? "div5" : ""}`}>
@@ -530,8 +541,6 @@ export default function Eng() {
               <div className="div16 glow shimmer" onClick={() => handleMedicare("no")}>No</div>
             </div>
           )}
-
-          
         </div>
       </div>
 

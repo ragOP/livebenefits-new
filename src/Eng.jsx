@@ -1,7 +1,8 @@
 // index.jsx
 import React, { useEffect, useRef, useState } from "react";
 import Card from "./assets/card.jpg";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 export default function Eng() {
   // ==== GLOBAL SAFETIES ====
   if (typeof window !== "undefined") {
@@ -66,7 +67,7 @@ export default function Eng() {
     letter-spacing: 0.05em;
     width: 100%;
     border-top: 0.2em solid #1e3a8a;
-    position: sticky;
+
     top: 0;
     z-index: 9999;
   }
@@ -504,7 +505,40 @@ export default function Eng() {
             Checking your eligibility is very simple and takes just 60 seconds, simply answer the questions below to see if you qualify now.
           </div>
 
-          <div className="arrow-section" title="Scroll for questions">⬇️</div>
+          {/* <div className="arrow-section" title="Scroll for questions">⬇️</div> */}
+ <div
+      className="arrow-section"
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100px",
+      }}
+    >
+      <FontAwesomeIcon
+        icon={faAngleDown}
+        style={{
+          fontSize: "40px",
+          color: "#333",
+          animation: "bounce 1.5s infinite ease-in-out",
+        }}
+      />
+
+      {/* Inline keyframes */}
+      <style>
+        {`
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(10px);
+            }
+          }
+        `}
+      </style>
+    </div>
+
 
           <div className="div11">
             <div className="div12">Answer The Question Below To Proceed:</div>

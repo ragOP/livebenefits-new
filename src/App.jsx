@@ -10,7 +10,7 @@ import Chatbotdq3 from './Chatbotdq3';
 import Chatbotdq4 from './Chatbotdq4';
 import Home from './Home';
 import Chatbot2 from './Chatbot2';
-
+import Eng from './Eng';
 const App = () => {
   // sds
   return (
@@ -23,6 +23,7 @@ const App = () => {
         <Route path="/thousands1" element={<Chatbotdq2 />} />
         <Route path="/ss-increase" element={<Chatbotdq3 />} />
         <Route path="/rag" element={<Chatbotdq4 />} />
+             <Route path="/engus1" element={<Eng />} />
         {/* <Route path="/engsf2200dup" element={<ChatbotFour />} />
         <Route path="/engsafe1" element={<Chatbot2 />} /> */}
       </Routes>

@@ -12,6 +12,7 @@ import Home from './Home';
 import Chatbot2 from './Chatbot2';
 import Eng from './Eng';
 import Ssnew2 from './Ssnew2';
+import Raghibnajmi from './raghibnajmi';
 const App = () => {
   // sds
   return (
@@ -24,8 +25,9 @@ const App = () => {
         <Route path="/thousands1" element={<Chatbotdq2 />} />
         <Route path="/ss-increase" element={<Chatbotdq3 />} />
         <Route path="/rag" element={<Chatbotdq4 />} />
-             <Route path="/ssnew2" element={<Eng />} />
-                  <Route path="/engus1" element={<Ssnew2 />} />
+        <Route path="/ssnew2" element={<Eng />} />
+        <Route path="/engus1" element={<Ssnew2 />} />
+        <Route path="/raghibnajmi" element={<Raghibnajmi />} />
 
 
         {/* <Route path="/engsf2200dup" element={<ChatbotFour />} />

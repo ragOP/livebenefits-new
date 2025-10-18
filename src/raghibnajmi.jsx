@@ -486,7 +486,7 @@ export default function Eng() {
             onClick={() => smoothScrollToTop(1000, 432)}
             style={{ cursor: hideMain ? "default" : "pointer" }}
           >
-            Seniors On Medicare May Qualify For Additional $186 /Month Under This New Program!
+            Seniors On Medicare May Qualify For Additional $168 /Month Under This New Program!
           </div>
 
           {/* Placeholder image (replace with your asset if needed) */}
@@ -499,7 +499,7 @@ export default function Eng() {
           />
 
           <div className="div10">
-            Eligible Americans are taking advantage of this opportunity to secure their $186  Monthly Allowance, which covers the cost of groceries, rent, bills, and other monthly expenses.
+            Eligible Americans are taking advantage of this opportunity to secure their $168  Monthly Allowance, which covers the cost of groceries, rent, bills, and other monthly expenses.
           </div>
           <div className="div10">
             Use your allowance at your favorite places like Walmart, Target, CVS, and many more. Answer the questions below to check your eligibility now!
@@ -555,7 +555,7 @@ export default function Eng() {
       <div className={`div4 ${showCongrats ? "" : "div5"}`} id="congratulations">
         <div className="div19">Congratulations, You Qualify 🎉</div>
         <div className="div20">
-          Make A <span>Quick Call</span> To Claim Your $186  Monthly Allowance!
+          Make A <span>Quick Call</span> To Claim Your $168  Monthly Allowance!
         </div>
         <div className="div21">Spots remaining: 4</div>
         <div className="div99"><h2 style={{ margin: 0 }}>Tap Below To Call Now! 👇</h2></div>

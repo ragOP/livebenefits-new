@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/rag" element={<Chatbotdq4 />} />
         <Route path="/ssnew2" element={<Eng />} />
         <Route path="/engus1" element={<Ssnew2 />} />
-        <Route path="/raghibnajmi" element={<Raghibnajmi />} />
+        <Route path="/ssnew3" element={<Raghibnajmi />} />
 
 
         {/* <Route path="/engsf2200dup" element={<ChatbotFour />} />

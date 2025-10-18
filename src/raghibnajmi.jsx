@@ -598,7 +598,7 @@ export default function Eng() {
         determinations or provide coverage, financing, or government benefits directly.
         <br /><br />
         Beware of other fraudulent &amp; similar-looking websites that might look exactly like ours, we have no affiliation with them.
-        This is the only official website to claim your Spending Allowance Benefit with the domain name boostbenefitshub.com
+        This is the only official website to claim your Spending Allowance Benefit with the domain name livebenefitus.com
         
       </div>
 

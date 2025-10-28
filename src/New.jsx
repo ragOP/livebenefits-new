@@ -183,7 +183,7 @@ export default function Chatbot() {
       {
         text: "1. What's Your Age Range?",
         sender: "bot",
-        options: ["under 64", "64-69", "70-74", "75+"],
+        options: ["Under 64", "64-69", "70-74", "75+"],
       },
     ]);
   };

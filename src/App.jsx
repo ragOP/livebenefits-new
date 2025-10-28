@@ -24,8 +24,8 @@ const App = () => {
         <Route path="/engsfdq" element={<Chatbotdq2 />} />
         <Route path="/engsf2200" element={<ChatbotTwo />} /> */}
         <Route path="/thousands1" element={<Chatbotdq2 />} />
-        <Route path="/ss-increase" element={<Chatbotdq3 />} />
-         <Route path="/new" element={<New />} />
+        {/* <Route path="/ss-increase" element={<Chatbotdq3 />} /> */}
+         <Route path="/ss-increase" element={<New />} />
 
         <Route path="/rag" element={<Chatbotdq4 />} />
         <Route path="/ssnew2" element={<Eng />} />

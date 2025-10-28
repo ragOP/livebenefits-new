@@ -35,7 +35,7 @@ export default function Chatbot() {
   };
 
   // ===== ANALYTICS HELPERS IN THIS JSX FILE =====
-  useEffect(() => {
+ useEffect(() => {
     if (typeof window === "undefined") return;
 
     // Ensure globals
@@ -49,59 +49,64 @@ export default function Chatbot() {
 
     // CASE-SENSITIVE — change to your exact Tag Pipe key names if needed.
     const RINGBA_AGE_KEY = "age";
-    const RINGBA_PARTAB_KEY = "ab"; // <-- added
+    const RINGBA_PARTAB_KEY = "ab";
 
-    // Public helper: Age
+    // Public helper: Age (Ringba lowercase ONLY)
     if (typeof window.rbAge !== "function") {
       window.rbAge = function rbAge(value) {
         try {
-          const v = String(value || "").trim();
+          const vOriginal = String(value || "").trim();     // as chosen (e.g., "64-69")
+          const vLower = vOriginal.toLowerCase();           // for Ringba only
+
+          // Build tag object for _rgba_tags (used by Ringba Tag Pipes)
+          // Age goes LOWERCASE, newsbreak_cid stays ORIGINAL (per your requirement).
           const tag = {};
-          tag[RINGBA_AGE_KEY] = v;   // e.g., { age: "64-69" }
-          tag["newsbreak_cid"] = v;  // mirror age into NB CID per your ask
+          tag[RINGBA_AGE_KEY] = vLower;                     // <- lowercase for Ringba ingestion
+          tag["newsbreak_cid"] = vOriginal;                 // keep original for NB
           tag["type"] = "User";
 
           window._rgba_tags.push(tag);
 
-          // Try Ringba live APIs
+          // Try Ringba live APIs (send lowercase for age; original for NB mirror)
           try {
             if (window.ringba?.api?.setTags) {
+              // setTags gets the same tag object (age lowercased, NB original)
               window.ringba.api.setTags(tag);
             } else if (window.ringba?.setCustomProperties) {
               window.ringba.setCustomProperties(tag);
             } else if (window._rb?.tag) {
-              window._rb.tag(RINGBA_AGE_KEY, v);
-              window._rb.tag("newsbreak_cid", v);
+              // Explicit tags
+              window._rb.tag(RINGBA_AGE_KEY, vLower);       // age LOWER
+              window._rb.tag("newsbreak_cid", vOriginal);   // NB ORIGINAL
             }
           } catch {}
 
-          // Newsbreak event (optional)
+          // Newsbreak custom event: keep original value (not lowercased)
           try {
-            window.nbq("trackCustom", "age_range", { value: v });
+            window.nbq("trackCustom", "age_range", { value: vOriginal });
           } catch {}
 
-          // dataLayer
-          window.dataLayer.push({ event: "age_range_selected", age_range: v });
+          // dataLayer: keep original (not lowercased)
+          window.dataLayer.push({ event: "age_range_selected", age_range: vOriginal });
 
-          console.log("[Ringba] pushed age:", tag, "→ _rgba_tags:", window._rgba_tags);
+          console.log("[Ringba] pushed age (lowercased to Ringba):", tag, "→ _rgba_tags:", window._rgba_tags);
         } catch (e) {
           console.warn("[Ringba] age push failed", e);
         }
       };
     }
 
-    // Public helper: Part A/B (Yes/No)
+    // Public helper: Part A/B (Yes/No) — unchanged
     if (typeof window.rbPartAB !== "function") {
       window.rbPartAB = function rbPartAB(value) {
         try {
           const v = String(value || "").trim(); // "Yes" | "No"
           const tag = {};
-          tag[RINGBA_PARTAB_KEY] = v; // e.g., { ab: "Yes" }
+          tag[RINGBA_PARTAB_KEY] = v;
           tag["type"] = "User";
 
           window._rgba_tags.push(tag);
 
-          // Try Ringba live APIs
           try {
             if (window.ringba?.api?.setTags) {
               window.ringba.api.setTags(tag);
@@ -112,12 +117,10 @@ export default function Chatbot() {
             }
           } catch {}
 
-          // Newsbreak custom event
           try {
             window.nbq("trackCustom", "ab", { value: v });
           } catch {}
 
-          // dataLayer
           window.dataLayer.push({ event: "medicare_partab", ab: v });
 
           console.log("[Ringba] pushed ab:", tag, "→ _rgba_tags:", window._rgba_tags);

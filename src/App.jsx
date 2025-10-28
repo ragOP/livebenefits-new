@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/engsfdq" element={<Chatbotdq2 />} />
         <Route path="/engsf2200" element={<ChatbotTwo />} /> */}
         <Route path="/thousands1" element={<Chatbotdq2 />} />
-        <Route path="/ss-increase" element={<Chatbotdq3 />} />
+        <Route path="/ss-increase" element={<Chatbotdq2 />} />
         <Route path="/rag" element={<Chatbotdq4 />} />
         <Route path="/ssnew2" element={<Eng />} />
         <Route path="/engus1" element={<Ssnew2 />} />
